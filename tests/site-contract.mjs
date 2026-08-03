@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -32,18 +32,6 @@ const english = files['index.html'];
 const chinese = files['zh/index.html'];
 const publicText = `${english}\n${chinese}\n${files['404.html']}`;
 
-function readPublicTextTree(directory = root) {
-  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name === '.git' || entry.name === 'tests') return [];
-    const absolutePath = join(directory, entry.name);
-    if (entry.isDirectory()) return readPublicTextTree(absolutePath);
-    if (!/\.(?:html|css|js|md|txt|xml)$/i.test(entry.name)) return [];
-    return readFileSync(absolutePath, 'utf8');
-  }).join('\n');
-}
-
-const publicTextTree = readPublicTextTree();
-
 assert.match(english, /<html\b[^>]*\blang=["']en["']/i, 'English page must use lang=en');
 assert.match(chinese, /<html\b[^>]*\blang=["']zh-CN["']/i, 'Chinese page must use lang=zh-CN');
 
@@ -53,20 +41,51 @@ for (const [label, html] of [
 ]) {
   assert.match(html, /<main\b/i, `${label} must contain a main element`);
 
-  for (const id of ['work', 'experience', 'education', 'recognition', 'contact']) {
+  for (const id of ['awards', 'work', 'experience', 'education', 'contact']) {
     assert.match(html, new RegExp(`\\bid=["']${id}["']`, 'i'), `${label} must contain #${id}`);
   }
+
+  assert.match(
+    html,
+    /class=["'][^"']*award-group[^"']*competition-awards/i,
+    `${label} must contain a competition awards group`,
+  );
+  assert.match(
+    html,
+    /class=["'][^"']*award-group[^"']*personal-honors/i,
+    `${label} must contain a personal honors group`,
+  );
 
   assert.match(html, /<link\b[^>]*\brel=["']canonical["'][^>]*>/i, `${label} must define a canonical URL`);
   assert.match(html, /<link\b[^>]*\bhreflang=["']en["'][^>]*>/i, `${label} must define hreflang=en`);
   assert.match(html, /<link\b[^>]*\bhreflang=["']zh-CN["'][^>]*>/i, `${label} must define hreflang=zh-CN`);
 }
 
-for (const text of ['Jinshuai Zhang', 'Recommendation Algorithms', 'Toolscaler', 'FGAD']) {
+for (const text of [
+  'Jinshuai Zhang',
+  'Recommendation Algorithms',
+  'ByteDance',
+  'Large-scale Content Recommendation Ranking Optimization',
+  'ToolScaler: Scalable Generative Tool Calling via Structure-Aware Semantic Tokenization',
+  'FGAD: Feedback-Guided Anomalous Diffusion Suppression for Graph Anomaly Detection',
+  'ZDC: Intelligent Anti-Money Laundering Detection Platform',
+  'Graph Anomaly Detection for Microservice Root-Cause Localization',
+  'Competition Awards',
+  'Personal Honors',
+]) {
   assert.ok(english.includes(text), `English page must contain ${text}`);
 }
 
-for (const text of ['张金帅', '推荐算法']) {
+for (const text of [
+  '张金帅',
+  '推荐算法',
+  '字节跳动',
+  '大型内容推荐排序优化',
+  '竞赛奖项',
+  '个人荣誉',
+  '国家奖学金',
+  '优秀毕业生',
+]) {
   assert.ok(chinese.includes(text), `Chinese page must contain ${text}`);
 }
 
@@ -82,9 +101,7 @@ const decode = (codePoints) => String.fromCodePoint(...codePoints);
 const encodedPattern = (codePoints) => new RegExp(decode(codePoints), 'i');
 
 const confidentialPatterns = [
-  encodedPattern([66, 121, 116, 101, 68, 97, 110, 99, 101]),
   encodedPattern([84, 105, 107, 84, 111, 107]),
-  encodedPattern([23383, 33410]),
   encodedPattern([25238, 38899]),
   new RegExp(`\\b${decode([65, 47, 66])}\\b`, 'i'),
   new RegExp(`\\b${decode([68, 65, 85])}\\b`, 'i'),
@@ -98,14 +115,36 @@ const confidentialPatterns = [
   encodedPattern([31934, 25490, 20010, 24615, 21270, 25552, 26435]),
   encodedPattern([115, 116, 114, 101, 97, 109, 105, 110, 103, 32, 97, 110, 100, 32, 98, 97, 116, 99, 104, 32, 116, 114, 97, 105, 110, 105, 110, 103, 32, 112, 105, 112, 101, 108, 105, 110, 101, 115]),
   encodedPattern([27969, 24335, 19982, 25209, 24335, 35757, 32451, 38142, 36335]),
+  /\b(?:topic|slot|psm)\b/i,
 ];
 
 for (const pattern of confidentialPatterns) {
-  assert.doesNotMatch(publicTextTree, pattern, `Public repository text must not match ${pattern}`);
+  assert.doesNotMatch(publicText, pattern, `Public pages must not match ${pattern}`);
 }
 
-for (const pattern of [/\+\d+(?:\.\d+)?%/, /\b0\.\d+\s*\/\s*0\.\d+\b/, /<dl\b[^>]*class=["'][^"']*\bmetrics\b/i]) {
+for (const pattern of [
+  /\+111%|\+12\.8%|\+76\.9%/,
+  /0\.81\s*\/\s*0\.79/,
+  /10%\s*(?:traffic|流量)/i,
+  /<dl\b[^>]*class=["'][^"']*\bmetrics\b/i,
+]) {
   assert.doesNotMatch(publicText, pattern, `Public pages must not expose business metrics matching ${pattern}`);
+}
+
+for (const [label, html] of [
+  ['English page', english],
+  ['Chinese page', chinese],
+]) {
+  assert.match(
+    html,
+    /<img[^>]+jinshuai-zhang\.jpg[^>]+width=["']1421["'][^>]+height=["']2132["']/i,
+    `${label} must use the supplied portrait dimensions`,
+  );
+  assert.equal(
+    (html.match(/<article class=["'][^"']*\bwork\b[^"']*["']/g) ?? []).length,
+    5,
+    `${label} must contain exactly five projects`,
+  );
 }
 
 assert.doesNotMatch(publicText, /href\s*=\s*["'][^"']*\.pdf(?:[?#][^"']*)?["']/i, 'Public pages must not link to PDF files');

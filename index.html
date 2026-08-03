@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jinshuai Zhang · Recommendation Algorithms &amp; Machine Learning</title>
-    <meta name="description" content="Jinshuai Zhang works on recommendation algorithms and machine learning, with research in scalable tool calling and graph anomaly detection.">
+    <meta name="description" content="Jinshuai Zhang works on large-scale recommendation ranking, scalable tool calling, and graph machine learning.">
     <meta property="og:title" content="Jinshuai Zhang · Recommendation Algorithms &amp; Machine Learning">
-    <meta property="og:description" content="Recommendation algorithms and machine learning, backed by research in scalable tool calling and graph learning.">
+    <meta property="og:description" content="Industry recommendation experience backed by research in scalable tool calling and graph learning.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://zhangjinshuai0711.github.io/">
     <meta property="og:image" content="https://zhangjinshuai0711.github.io/assets/images/jinshuai-zhang.jpg">
@@ -29,6 +29,7 @@
         <span class="sr-only">Open navigation</span>
       </button>
       <nav id="primary-nav" aria-label="Primary navigation">
+        <a href="#awards">Awards</a>
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
@@ -42,7 +43,7 @@
         <div class="hero-copy" data-reveal>
           <p class="eyebrow">Recommendation Algorithms · Machine Learning</p>
           <h1>Jinshuai<br>Zhang</h1>
-          <p class="hero-intro">I work on recommendation algorithms and machine learning, with research depth in scalable tool calling and graph learning.</p>
+          <p class="hero-intro">I build ranking and learning systems for practical recommendation problems, supported by research in scalable tool calling and graph machine learning.</p>
           <p class="hero-status">M.E. Student in Cyberspace Security at Tsinghua University · 2026-Present</p>
           <div class="hero-links">
             <a href="mailto:zhangjinshuai0711@163.com">Email</a>
@@ -50,78 +51,125 @@
           </div>
         </div>
         <figure class="hero-portrait" data-reveal>
-          <img src="/assets/images/jinshuai-zhang.jpg" width="800" height="999" alt="Portrait of Jinshuai Zhang">
+          <img src="/assets/images/jinshuai-zhang.jpg" width="1421" height="2132" alt="Portrait of Jinshuai Zhang">
           <figcaption>Recommendation systems · Tool calling · Graph learning</figcaption>
         </figure>
-        <a class="next-section" href="#work">Selected work <span aria-hidden="true">↓</span></a>
+        <a class="next-section" href="#awards">Distinctions <span aria-hidden="true">↓</span></a>
+      </section>
+
+      <section class="section distinctions" id="awards">
+        <header class="section-heading" data-reveal>
+          <p class="section-index">01</p>
+          <h2>Distinctions</h2>
+          <p>Selected national awards and individual honors.</p>
+        </header>
+        <div class="distinction-groups">
+          <section class="award-group competition-awards" data-reveal>
+            <h3>Competition Awards</h3>
+            <ul class="award-list">
+              <li><strong>National Grand Prize</strong> ICBC Cup National College Student FinTech Innovation Competition</li>
+              <li><strong>National First Prize</strong> iCAN AI Challenge</li>
+              <li><strong>National Third Prize · Team Lead</strong> National College Student Information Security Contest, Works Competition</li>
+            </ul>
+          </section>
+          <section class="award-group personal-honors" data-reveal>
+            <h3>Personal Honors</h3>
+            <ul class="award-list">
+              <li><strong>National Scholarship</strong></li>
+              <li><strong>University Honor</strong> 23rd Top Ten Student and Mazu Guang Scholarship</li>
+              <li><strong>University Honor</strong> Model Outstanding Student Cadre</li>
+              <li><strong>Graduate Honor</strong> Outstanding Graduate</li>
+            </ul>
+          </section>
+        </div>
       </section>
 
       <section class="section selected-work" id="work">
         <header class="section-heading" data-reveal>
-          <p class="section-index">01</p>
+          <p class="section-index">02</p>
           <h2>Selected Work</h2>
-          <p>Research that connects scalable learning methods with practical machine learning problems.</p>
+          <p>Industry ranking work and research projects spanning tool agents, graph learning, and risk intelligence.</p>
         </header>
 
         <article class="work work-primary" data-reveal>
-          <div class="work-label"><span>01</span> Scalable Tool Calling</div>
+          <div class="work-label"><span>01</span> Industry Recommendation</div>
           <div class="work-body">
-            <p class="work-meta">Findings of EMNLP 2025 · Second author</p>
-            <h3>Toolscaler</h3>
-            <p>Contributed to a generative tool-calling framework that encodes 46,985 tools as composable, structure-aware semantic code sequences. Built high-quality training data from ToolBench documentation, query-tool pairs, and invocation trajectories, then evaluated retrieval, unseen-tool generalization, and end-to-end calling.</p>
+            <p class="work-meta">ByteDance · Recommendation Algorithm Intern · 2026</p>
+            <h3>Large-scale Content Recommendation Ranking Optimization</h3>
+            <p>Worked on large-scale recommendation ranking, focusing on sample construction, DNN ranking models, candidate expansion, and personalized reranking. Designed privacy-safe training samples and controlled comparisons to understand how modeling and candidate quality affected the final ranking stage.</p>
+            <p>Owned implementation from offline analysis and ablation studies through controlled online validation and launch. The engineering work included generalized online feature integration, vector-retrieval filtering, and layered observability for diagnosing data, retrieval, and model behavior. Product identity, internal systems, traffic allocation, and business metrics are intentionally omitted.</p>
           </div>
         </article>
 
         <article class="work" data-reveal>
-          <div class="work-label"><span>02</span> Graph Anomaly Detection</div>
+          <div class="work-label"><span>02</span> Scalable Tool Calling</div>
+          <div class="work-body">
+            <p class="work-meta">Findings of EMNLP 2025 · Second author</p>
+            <h3>ToolScaler: Scalable Generative Tool Calling via Structure-Aware Semantic Tokenization</h3>
+            <p>Contributed to a generative tool-calling framework that represents roughly 47k tools as composable, structure-aware semantic token sequences. This formulation turns large-tool selection into constrained generation and is designed to scale beyond a fixed retrieval inventory.</p>
+            <p>Built and quality-checked training data from ToolBench documentation, query-tool pairs, and invocation trajectories. Conducted experiments covering tool retrieval, unseen-tool generalization, and end-to-end invocation, and helped connect the data pipeline, model training, and evaluation into a reproducible research workflow.</p>
+          </div>
+        </article>
+
+        <article class="work" data-reveal>
+          <div class="work-label"><span>03</span> Graph Anomaly Detection</div>
           <div class="work-body">
             <p class="work-meta">First author · Manuscript in preparation, target: IEEE TDSC</p>
-            <h3>FGAD</h3>
-            <p>Designed feedback-guided anomalous diffusion suppression to prevent abnormal information from contaminating neighboring node representations. The model achieved the best AUC on seven of eight evaluated datasets against eleven baselines, including 91.68% on Inj Flickr.</p>
+            <h3>FGAD: Feedback-Guided Anomalous Diffusion Suppression for Graph Anomaly Detection</h3>
+            <p>Designed a feedback-guided framework to limit the spread of anomalous information through graph neighborhoods. The method estimates anomaly feedback during message passing and suppresses harmful diffusion before it contaminates representations of nearby normal nodes.</p>
+            <p>Led method design, implementation, experiment construction, and analysis. Against 11 baselines, FGAD achieved the best AUC on 7 of 8 evaluated datasets, including approximately 92% on Inj Flickr. Additional ablations and sensitivity studies were used to isolate the contribution of the feedback and suppression components.</p>
+          </div>
+        </article>
+
+        <article class="work" data-reveal>
+          <div class="work-label"><span>04</span> Financial Risk Intelligence</div>
+          <div class="work-body">
+            <p class="work-meta">National competition project · Team collaboration</p>
+            <h3>ZDC: Intelligent Anti-Money Laundering Detection Platform</h3>
+            <p>Developed a risk-detection prototype for complex financial interactions. The project models entities and transactions as a graph, combines relational patterns with behavioral signals, and organizes suspicious-case discovery into a workflow that supports investigation rather than producing an isolated score.</p>
+            <p>Contributed to the detection approach, system integration, and presentation of evidence paths for review. The prototype emphasized interpretable graph-based risk cues and a complete analyst-facing workflow. Because source reports contain conflicting evaluation figures, no quantitative performance claim is published here.</p>
+          </div>
+        </article>
+
+        <article class="work" data-reveal>
+          <div class="work-label"><span>05</span> Service Reliability Research</div>
+          <div class="work-body">
+            <p class="work-meta">ICES Research Intern · Research and engineering prototype</p>
+            <h3>Graph Anomaly Detection for Microservice Root-Cause Localization</h3>
+            <p>Explored graph anomaly detection for localizing failures in microservice environments. The prototype converts service dependencies and multi-source operational observations into graph representations, then studies how abnormal nodes and propagation paths can narrow the search space for root causes.</p>
+            <p>Worked across data preparation, graph construction, model experiments, and prototype integration. The project connected anomaly scoring with dependency-aware diagnosis and practical visualization, while keeping research hypotheses separate from production claims. It is presented as a research and engineering prototype, not a deployed operational system.</p>
           </div>
         </article>
       </section>
 
       <section class="section timeline" id="experience">
         <header class="section-heading" data-reveal>
-          <p class="section-index">02</p>
+          <p class="section-index">03</p>
           <h2>Experience</h2>
         </header>
         <ol class="timeline-list">
-          <li data-reveal><time>Nov 2024–May 2025</time><div><h3>Institute of Automation, Chinese Academy of Sciences</h3><p>NLPR Research Intern · Tool agents and unseen-tool generalization</p></div></li>
-          <li data-reveal><time>Jul–Nov 2024</time><div><h3>Harbin Institute of Technology</h3><p>ICES Research Intern · Graph anomaly detection for root-cause localization</p></div></li>
+          <li data-reveal><time>Feb-Aug 2026</time><div><h3>ByteDance</h3><p>Recommendation Algorithm Intern · Large-scale ranking optimization</p></div></li>
+          <li data-reveal><time>Nov 2024-May 2025</time><div><h3>Institute of Automation, Chinese Academy of Sciences</h3><p>NLPR Research Intern · Tool agents and unseen-tool generalization</p></div></li>
+          <li data-reveal><time>Jul-Nov 2024</time><div><h3>Harbin Institute of Technology</h3><p>ICES Research Intern · Graph anomaly detection for root-cause localization</p></div></li>
         </ol>
       </section>
 
       <section class="section education" id="education">
         <header class="section-heading" data-reveal>
-          <p class="section-index">03</p>
+          <p class="section-index">04</p>
           <h2>Education</h2>
         </header>
         <div class="education-list">
-          <article data-reveal><p class="date">2026–Present</p><h3>Tsinghua University</h3><p>M.E. in Cyberspace Security · Institute for Network Sciences and Cyberspace</p></article>
-          <article data-reveal><p class="date">2022–2026</p><h3>Harbin Institute of Technology (Weihai)</h3><p>B.Eng. in Cyberspace Security · Rank 2/75 · GPA 94.09/100</p><p>National Scholarship · Top Ten Student · Outstanding Graduate</p></article>
+          <article data-reveal><p class="date">2026-Present</p><h3>Tsinghua University</h3><p>M.E. in Cyberspace Security · Institute for Network Sciences and Cyberspace</p></article>
+          <article data-reveal><p class="date">2022-2026</p><h3>Harbin Institute of Technology (Weihai)</h3><p>B.Eng. in Cyberspace Security · Rank 2/75 · GPA 94.09/100</p></article>
         </div>
-      </section>
-
-      <section class="section recognition" id="recognition">
-        <header class="section-heading" data-reveal>
-          <p class="section-index">04</p>
-          <h2>Recognition</h2>
-        </header>
-        <ul class="recognition-list">
-          <li data-reveal><span>National Grand Prize</span> ICBC Cup Financial Technology Innovation Competition</li>
-          <li data-reveal><span>National First Prize</span> iCAN AI Challenge</li>
-          <li data-reveal><span>National Third Prize</span> National College Student Information Security Contest</li>
-          <li data-reveal><span>National Scholarship</span></li>
-        </ul>
       </section>
 
       <section class="section contact" id="contact">
         <div data-reveal>
           <p class="section-index">05</p>
           <h2>Let’s build better ranking systems.</h2>
-          <p>I am open to conversations about recommendation algorithms, machine learning, and applied research.</p>
+          <p>I am open to opportunities and conversations in recommendation algorithms, machine learning, and applied research.</p>
         </div>
         <div class="contact-links" data-reveal>
           <a href="mailto:zhangjinshuai0711@163.com">zhangjinshuai0711@163.com</a>
