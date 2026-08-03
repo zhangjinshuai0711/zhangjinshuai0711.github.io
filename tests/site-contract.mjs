@@ -175,7 +175,7 @@ for (const [label, html] of [
 ]) {
   assert.match(
     html,
-    /<img[^>]+jinshuai-zhang\.jpg[^>]+width=["']1421["'][^>]+height=["']2132["']/i,
+    /<img[^>]+jinshuai-zhang\.jpg[^>]+width=["']1000["'][^>]+height=["']1500["']/i,
     `${label} must use the supplied portrait dimensions`,
   );
   assert.equal(
