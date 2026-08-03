@@ -558,8 +558,12 @@ button {
 
 .timeline-details li,
 .education-facts li {
+  display: block;
   position: relative;
+  width: 100%;
+  min-width: 0;
   padding-left: 1rem;
+  border: 0;
   color: var(--muted);
   font-size: 0.9rem;
 }
