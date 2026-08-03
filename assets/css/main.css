@@ -351,6 +351,60 @@ button {
   font-size: 0.9rem;
 }
 
+.distinctions {
+  background: var(--soft);
+}
+
+.distinction-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+}
+
+.award-group {
+  min-width: 0;
+  padding: 2rem 3rem 0 0;
+}
+
+.award-group + .award-group {
+  padding-left: 3rem;
+  border-left: 1px solid var(--line);
+}
+
+.award-group h3 {
+  margin: 0 0 1.25rem;
+  font-family: var(--display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+[lang="zh-CN"] .award-group h3 {
+  font-family: "STSong", "Songti SC", var(--display);
+}
+
+.award-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.award-list li {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.award-list strong {
+  display: block;
+  color: var(--blue);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.personal-honors .award-list strong {
+  color: var(--orange);
+}
+
 .selected-work {
   color: var(--paper);
   background: var(--ink);
@@ -361,10 +415,8 @@ button {
 }
 
 .work {
-  display: grid;
-  grid-template-columns: minmax(11rem, 0.38fr) minmax(0, 1fr);
-  gap: 3rem;
-  padding: 3.5rem 0;
+  display: block;
+  padding: 4rem 0;
   border-top: 1px solid #454541;
 }
 
@@ -373,12 +425,14 @@ button {
 }
 
 .work-label {
+  margin-bottom: 1.5rem;
   color: #b9b9b3;
 }
 
 .work-label span {
-  display: block;
-  margin-bottom: 1rem;
+  display: inline-block;
+  min-width: 4rem;
+  margin: 0 1rem 0 0;
   color: var(--orange);
   font-family: var(--display);
   font-size: 2.5rem;
@@ -391,10 +445,11 @@ button {
 }
 
 .work h3 {
-  max-width: 20ch;
+  max-width: 30ch;
   margin: 0.8rem 0 1.5rem;
+  overflow-wrap: anywhere;
   font-family: var(--display);
-  font-size: 2.5rem;
+  font-size: 2.35rem;
   font-weight: 450;
   line-height: 1.08;
 }
@@ -405,7 +460,7 @@ button {
 }
 
 .work-body > p:not(.work-meta) {
-  max-width: 48rem;
+  max-width: 54rem;
   color: #d0d0ca;
 }
 
@@ -478,26 +533,6 @@ button {
 .date {
   margin-bottom: 1.5rem !important;
   color: var(--blue) !important;
-}
-
-.recognition-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  border-top: 1px solid var(--ink);
-}
-
-.recognition-list li {
-  display: grid;
-  grid-template-columns: minmax(12rem, 0.4fr) minmax(0, 1fr);
-  gap: 2rem;
-  padding: 1.4rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.recognition-list span {
-  color: var(--orange);
-  font-weight: 650;
 }
 
 .contact {
@@ -700,9 +735,12 @@ footer p {
     grid-column: 2;
   }
 
-  .work {
-    grid-template-columns: 9rem minmax(0, 1fr);
-    gap: 2rem;
+  .award-group {
+    padding-right: 2rem;
+  }
+
+  .award-group + .award-group {
+    padding-left: 2rem;
   }
 
   .contact {
@@ -803,24 +841,36 @@ footer p {
     font-size: 2.6rem;
   }
 
-  .work {
+  .distinction-groups {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
-    padding: 2.5rem 0;
+  }
+
+  .award-group,
+  .award-group + .award-group {
+    padding: 1.75rem 0 0;
+    border-left: 0;
+  }
+
+  .award-group + .award-group {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .work {
+    padding: 2.75rem 0;
   }
 
   .work-label span {
-    display: inline;
+    min-width: 2.5rem;
     margin-right: 0.6rem;
     font-size: 1.5rem;
   }
 
   .work h3 {
-    font-size: 2rem;
+    font-size: 1.85rem;
   }
 
-  .timeline-list li,
-  .recognition-list li {
+  .timeline-list li {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
   }
