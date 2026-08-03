@@ -72,6 +72,18 @@ for (const text of [
   'Graph Anomaly Detection for Microservice Root-Cause Localization',
   'Competition Awards',
   'Personal Honors',
+  'privacy-safe sample construction',
+  'controlled online validation',
+  'semantic compression',
+  'iterative training',
+  'attribute reconstruction',
+  'structural consistency',
+  'adaptive diffusion',
+  'Metis',
+  'model training and method innovation',
+  'edge-aware aggregation',
+  'CET-6',
+  'Database Systems (99)',
 ]) {
   assert.ok(english.includes(text), `English page must contain ${text}`);
 }
@@ -85,9 +97,35 @@ for (const text of [
   '个人荣誉',
   '国家奖学金',
   '优秀毕业生',
+  '隐私安全的样本构建',
+  '受控线上验证',
+  '语义压缩',
+  '迭代训练',
+  '属性重构',
+  '结构一致性',
+  '自适应扩散',
+  'Metis',
+  '模型训练与方法创新',
+  '边特征感知聚合',
+  'CET-6',
+  '数据库系统（99）',
 ]) {
   assert.ok(chinese.includes(text), `Chinese page must contain ${text}`);
 }
+
+function assertCurrentEducationArticle(html, label, date, school) {
+  const article = html.match(
+    /<article\b(?=[^>]*\bclass=["'][^"']*\beducation-current\b[^"']*["'])[^>]*>([\s\S]*?)<\/article>/i,
+  );
+  assert.ok(article, `${label} must contain an education-current article`);
+  assert.ok(
+    article[1].indexOf(date) >= 0 && article[1].indexOf(school) > article[1].indexOf(date),
+    `${label} education-current article must list ${date} before ${school}`,
+  );
+}
+
+assertCurrentEducationArticle(english, 'English page', '2026.09-Present', 'Tsinghua University');
+assertCurrentEducationArticle(chinese, 'Chinese page', '2026.09-至今', '清华大学');
 
 for (const text of ['zhangjinshuai0711@163.com', 'github.com/zhangjinshuai0711']) {
   assert.ok(publicText.includes(text), `Public text must contain ${text}`);

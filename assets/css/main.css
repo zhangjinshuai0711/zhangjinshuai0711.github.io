@@ -449,7 +449,7 @@ button {
   margin: 0.8rem 0 1.5rem;
   overflow-wrap: anywhere;
   font-family: var(--display);
-  font-size: 2.35rem;
+  font-size: 2.48rem;
   font-weight: 450;
   line-height: 1.08;
 }
@@ -528,6 +528,43 @@ button {
 .education-list article + article {
   padding-left: 3rem;
   border-left: 1px solid var(--line);
+}
+
+.education-current h3 {
+  max-width: 18ch;
+  font-size: 2.25rem;
+}
+
+[lang="zh-CN"] .education-current h3 {
+  font-size: 2.4rem;
+}
+
+.timeline-details,
+.education-facts {
+  padding: 0;
+  margin: 0.9rem 0 0;
+  list-style: none;
+}
+
+.timeline-details li,
+.education-facts li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.timeline-details li::before,
+.education-facts li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--orange);
+  content: "·";
+}
+
+.work-body > p:not(.work-meta) + p {
+  margin-top: 0.9rem;
 }
 
 .date {
@@ -868,6 +905,11 @@ footer p {
 
   .work h3 {
     font-size: 1.85rem;
+  }
+
+  .education-current h3,
+  [lang="zh-CN"] .education-current h3 {
+    font-size: 2.05rem;
   }
 
   .timeline-list li {

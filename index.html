@@ -96,8 +96,9 @@
           <div class="work-body">
             <p class="work-meta">ByteDance · Recommendation Algorithm Intern · 2026</p>
             <h3>Large-scale Content Recommendation Ranking Optimization</h3>
-            <p>Worked on large-scale recommendation ranking, focusing on sample construction, DNN ranking models, candidate expansion, and personalized reranking. Designed privacy-safe training samples and controlled comparisons to understand how modeling and candidate quality affected the final ranking stage.</p>
-            <p>Owned implementation from offline analysis and ablation studies through controlled online validation and launch. The engineering work included generalized online feature integration, vector-retrieval filtering, and layered observability for diagnosing data, retrieval, and model behavior.</p>
+            <p>Framed a large-scale recommendation ranking problem around candidate quality and conversion efficiency. Used privacy-safe sample construction, aligned labels and statistical definitions, and applied controlled data checks to make offline evaluation reliable before model iteration.</p>
+            <p>Developed a DNN ranking workflow spanning sample construction, candidate expansion, personalized reranking, ablation studies, and controlled online validation. Compared modeling and ranking choices systematically, then carried the selected approach through review and launch while monitoring core-system stability.</p>
+            <p>Owned the implementation path from offline analysis to online serving. The engineering work included generalized feature propagation, vector-retrieval filtering, version and encoding consistency, layered observability, and reusable troubleshooting practices across data, retrieval, model, and serving stages.</p>
           </div>
         </article>
 
@@ -106,8 +107,9 @@
           <div class="work-body">
             <p class="work-meta">Findings of EMNLP 2025 · Second author</p>
             <h3>ToolScaler: Scalable Generative Tool Calling via Structure-Aware Semantic Tokenization</h3>
-            <p>Contributed to a generative tool-calling framework that represents roughly 47k tools as composable, structure-aware semantic token sequences. This formulation turns large-tool selection into constrained generation and is designed to scale beyond a fixed retrieval inventory.</p>
-            <p>Built and quality-checked training data from ToolBench documentation, query-tool pairs, and invocation trajectories. Conducted experiments covering tool retrieval, unseen-tool generalization, and end-to-end invocation, and helped connect the data pipeline, model training, and evaluation into a reproducible research workflow.</p>
+            <p>The team method represents roughly 47k API functions from ToolBench as composable, structure-aware semantic token sequences. Using semantic compression, related tools receive nearby codes, while constrained generation reduces selection cost across an exceptionally large tool space.</p>
+            <p>The framework combines initial code construction, iterative training, and post-guided refinement to learn tool semantics and generalize to tools unseen during training, rather than depending on a fixed retrieval inventory.</p>
+            <p>My contribution focused on processing ToolBench documentation, query-tool pairs, and invocation trajectories; constructing and quality-checking high-quality training data; supporting training; and running retrieval, unseen-tool generalization, and end-to-end calling experiments with result analysis.</p>
           </div>
         </article>
 
@@ -116,8 +118,9 @@
           <div class="work-body">
             <p class="work-meta">First author · Manuscript in preparation, target: IEEE TDSC</p>
             <h3>FGAD: Feedback-Guided Anomalous Diffusion Suppression for Graph Anomaly Detection</h3>
-            <p>Designed a feedback-guided framework to limit the spread of anomalous information through graph neighborhoods. The method estimates anomaly feedback during message passing and suppresses harmful diffusion before it contaminates representations of nearby normal nodes.</p>
-            <p>Led method design, implementation, experiment construction, and analysis. Against 11 baselines, FGAD achieved the best AUC on 7 of 8 evaluated datasets, including approximately 92% on Inj Flickr. Additional ablations and sensitivity studies were used to isolate the contribution of the feedback and suppression components.</p>
+            <p>Addressed the spread of anomalous information through graph neighborhoods and its contamination of normal-node representations. The method combines attribute reconstruction with edge-level structural consistency to produce feedback signals during message passing.</p>
+            <p>An MLP-based adaptive diffusion matrix and decoupled graph convolution regulate propagation, while Metis subgraph partitioning supports scalable mini-batch training. Ablation studies isolate the effects of feedback, suppression, and structural components.</p>
+            <p>As first author, led method design, implementation, experiment construction, and analysis. Against 11 baselines, FGAD achieved the best AUC on 7 of 8 evaluated datasets, including approximately 92% on Inj Flickr.</p>
           </div>
         </article>
 
@@ -126,8 +129,9 @@
           <div class="work-body">
             <p class="work-meta">National competition project · Team collaboration</p>
             <h3>ZDC: Intelligent Anti-Money Laundering Detection Platform</h3>
-            <p>Developed a risk-detection prototype for complex financial interactions. The project models entities and transactions as a graph, combines relational patterns with behavioral signals, and organizes suspicious-case discovery into a workflow that supports investigation rather than producing an isolated score.</p>
-            <p>Contributed to the detection approach, system integration, and presentation of evidence paths for review. The prototype emphasized interpretable graph-based risk cues and a complete analyst-facing workflow.</p>
+            <p>Built a graph-based anti-money-laundering research prototype for a national competition. It jointly models entities and transactions, using attribute and structure reconstruction to identify anomalous relationship patterns.</p>
+            <p>The team approach combines anomaly feedback, contrastive learning, and attention-based enhancement, and produces interpretable evidence paths to support analysis rather than only isolated risk scores.</p>
+            <p>My role centered on model training and method innovation, including experiment tuning and interpretation-oriented algorithm integration. The competition research prototype received the ICBC Cup National Grand Prize.</p>
           </div>
         </article>
 
@@ -136,8 +140,9 @@
           <div class="work-body">
             <p class="work-meta">ICES Research Intern · Research and engineering prototype</p>
             <h3>Graph Anomaly Detection for Microservice Root-Cause Localization</h3>
-            <p>Explored graph anomaly detection for localizing failures in microservice environments. The prototype converts service dependencies and multi-source operational observations into graph representations, then studies how abnormal nodes and propagation paths can narrow the search space for root causes.</p>
-            <p>Worked across data preparation, graph construction, model experiments, and prototype integration. The project connected anomaly scoring with dependency-aware diagnosis and practical visualization, while keeping research hypotheses separate from production claims. It is presented as a research and engineering prototype, not a deployed operational system.</p>
+            <p>Studied microservice root-cause localization by reproducing and comparing representative graph anomaly detection baselines, with parameter and evaluation settings organized across multiple datasets.</p>
+            <p>Reconstructed a DONE-style dual-branch training framework with DGL and PyTorch. Edge-aware aggregation combines node attributes with edge observations while preserving separate structural and attribute branches.</p>
+            <p>My work covered data preparation, baseline implementation, experiment comparison, and engineering integration. The result is a research and engineering prototype, not a deployed root-cause analysis system.</p>
           </div>
         </article>
       </section>
@@ -148,9 +153,9 @@
           <h2>Experience</h2>
         </header>
         <ol class="timeline-list">
-          <li data-reveal><time>Feb-Aug 2026</time><div><h3>ByteDance</h3><p>Recommendation Algorithm Intern · Large-scale ranking optimization</p></div></li>
-          <li data-reveal><time>Nov 2024-May 2025</time><div><h3>Institute of Automation, Chinese Academy of Sciences</h3><p>NLPR Research Intern · Tool agents and unseen-tool generalization</p></div></li>
-          <li data-reveal><time>Jul-Nov 2024</time><div><h3>Harbin Institute of Technology</h3><p>ICES Research Intern · Graph anomaly detection for root-cause localization</p></div></li>
+          <li data-reveal><time>Feb-Aug 2026</time><div><h3>ByteDance</h3><p>Recommendation Algorithm Intern · Large-scale ranking optimization</p><ul class="timeline-details"><li>Built privacy-safe samples and evaluated DNN ranking, candidate expansion, and controlled validation choices.</li><li>Supported launch through online feature integration, vector-retrieval filtering, observability, and cross-stage troubleshooting.</li></ul></div></li>
+          <li data-reveal><time>Nov 2024-May 2025</time><div><h3>Institute of Automation, Chinese Academy of Sciences</h3><p>NLPR Research Intern · Tool agents and unseen-tool generalization</p><ul class="timeline-details"><li>Processed ToolBench documentation, query-tool pairs, and invocation trajectories into quality-controlled training data.</li><li>Supported training and analyzed retrieval, unseen-tool generalization, and end-to-end calling experiments.</li></ul></div></li>
+          <li data-reveal><time>Jul-Nov 2024</time><div><h3>Harbin Institute of Technology</h3><p>ICES Research Intern · Graph anomaly detection for root-cause localization</p><ul class="timeline-details"><li>Reproduced graph-anomaly baselines and organized multi-dataset experiment comparisons.</li><li>Reconstructed DONE-style dual-branch training in DGL and PyTorch with edge-aware aggregation.</li></ul></div></li>
         </ol>
       </section>
 
@@ -160,8 +165,20 @@
           <h2>Education</h2>
         </header>
         <div class="education-list">
-          <article data-reveal><p class="date">2026-Present</p><h3>Tsinghua University</h3><p>M.E. in Cyberspace Security · Institute for Network Sciences and Cyberspace</p></article>
-          <article data-reveal><p class="date">2022-2026</p><h3>Harbin Institute of Technology (Weihai)</h3><p>B.Eng. in Cyberspace Security · Rank 2/75 · GPA 94.09/100</p></article>
+          <article class="education-current" data-reveal>
+            <p class="date">2026.09-Present</p>
+            <h3>Tsinghua University</h3>
+            <p>M.E. Student in Cyberspace Security · Institute for Network Sciences and Cyberspace</p>
+          </article>
+          <article data-reveal>
+            <p class="date">2022.09-2026.06</p>
+            <h3>Harbin Institute of Technology (Weihai)</h3>
+            <p>B.Eng. in Cyberspace Security · Rank 2/75 · GPA 94.09/100 · CET-6</p>
+            <ul class="education-facts">
+              <li>Database Systems (99) · Computer Organization (99) · Computer Networks (98)</li>
+              <li>Data Structures and Algorithms (96) · Operating Systems (95)</li>
+            </ul>
+          </article>
         </div>
       </section>
 
