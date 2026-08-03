@@ -477,10 +477,20 @@ button {
 
 .timeline-list li {
   display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr);
+  grid-template-columns: 11rem minmax(0, 1fr);
   gap: 2rem;
   padding: 2rem 0;
   border-bottom: 1px solid var(--line);
+}
+
+.timeline-list li > div,
+.timeline-details {
+  width: 100%;
+  min-width: 0;
+}
+
+.timeline-list p {
+  max-width: none;
 }
 
 .timeline-list time {
