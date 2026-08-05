@@ -44,9 +44,6 @@ for (const id of ['overview', 'education', 'experience', 'projects', 'service', 
 }
 
 for (const text of [
-  '中共党员',
-  '电子信息（085400）',
-  '网络科学与网络空间研究院',
   '计算机科学与技术学院',
   '自强不息，厚德载物',
   '班级就业联络员',
@@ -90,9 +87,11 @@ const soeHero = soeHeroMatch[0];
 assert.match(soeHero, /class=["'][^"']*\btsinghua-masthead\b[^"']*["']/i, 'SOE hero must use a Tsinghua masthead');
 assert.match(soeHero, /class=["'][^"']*\bhero-body\b[^"']*["']/i, 'SOE hero must contain a hero body');
 assert.match(soeHero, /class=["'][^"']*tsinghua-name[^"']*["'][^>]*>清华大学</i, 'SOE page must visually emphasize Tsinghua University');
+assert.match(soeHero, /class=["'][^"']*hero-kicker[^"']*["'][^>]*>[\s\S]*?中共党员[\s\S]*?<\/p>/i, 'SOE hero must contain the party membership identity');
+assert.match(soeHero, /class=["'][^"']*tsinghua-degree[^"']*["'][^>]*>电子信息（085400）<\/p>/i, 'SOE masthead must contain the exact degree');
 assert.match(soeHero, /<img\b[^>]*class=["'][^"']*tsinghua-mark[^"']*["'][^>]*src=["']\/assets\/images\/tsinghua-seal\.jpg["'][^>]*width=["']600["'][^>]*height=["']598["']/i, 'SOE Tsinghua masthead must use the supplied seal dimensions');
 assert.ok(soeHero.includes('网络科学与网络空间研究院 · 2026 至今'), 'SOE hero must contain the current Tsinghua institute term');
-assert.ok(soeHero.includes('zhangjinshuai0711@163.com'), 'SOE hero must contain the full email address');
+assert.match(soeHero, /class=["'][^"']*hero-email[^"']*["'][^>]*>[\s\S]*?zhangjinshuai0711@163\.com[\s\S]*?<\/p>/i, 'SOE hero must contain the full email in the hero-email element');
 assert.doesNotMatch(soeHero, /mailto:|GitHub/i, 'SOE hero must not contain mail links or GitHub');
 assert.match(soe, /class=["'][^"']*front-personal[^"']*["'][^>]*>[\s\S]*?优秀团员标兵[\s\S]*?<\/section>/i, 'Selected personal honors must feature Model Communist Youth League Member');
 assert.match(soe, /class=["'][^"']*honor-featured[^"']*["'][^>]*>[\s\S]*?优秀团员标兵[\s\S]*?<\/div>\s*<\/div>/i, 'Featured honors must include Model Communist Youth League Member');
