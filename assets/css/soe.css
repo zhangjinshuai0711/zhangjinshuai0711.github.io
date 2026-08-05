@@ -172,15 +172,31 @@ button {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(19rem, 0.62fr);
-  grid-template-rows: 1fr auto;
-  gap: 2.5rem clamp(2.5rem, 6vw, 6rem);
-  align-items: center;
   width: min(100%, var(--content));
-  min-height: calc(100svh - 4.75rem);
+  min-height: min(50rem, calc(100svh - 7.5rem));
   margin: 0 auto;
-  padding: clamp(3.5rem, 7vh, 6rem) var(--gutter) 2.2rem;
+  padding: clamp(2.5rem, 5vh, 4rem) var(--gutter) 2.2rem;
+}
+
+.tsinghua-masthead {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: center;
+  width: 100%;
+  padding: 1.15rem 1.4rem;
+  border-top: 3px solid var(--thu);
+  border-bottom: 1px solid var(--line);
+  background: #f1eef3;
+}
+
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+  min-height: 29rem;
+  margin-top: 2rem;
 }
 
 .hero-copy {
@@ -210,22 +226,10 @@ button {
 .hero h1 {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(3.8rem, 6.5vw, 5.8rem);
+  font-size: clamp(3.8rem, 6vw, 5.5rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0;
-}
-
-.tsinghua-identity {
-  display: grid;
-  grid-template-columns: 4.25rem minmax(0, 1fr);
-  gap: 1.15rem;
-  align-items: center;
-  max-width: 43rem;
-  margin-top: 1.7rem;
-  padding: 1rem 0;
-  border-top: 2px solid var(--thu);
-  border-bottom: 1px solid var(--line);
 }
 
 .tsinghua-mark {
@@ -243,7 +247,7 @@ button {
   margin: 0;
   color: var(--thu);
   font-family: var(--serif);
-  font-size: clamp(2.4rem, 3.4vw, 3.3rem);
+  font-size: clamp(2.5rem, 3.5vw, 3.4rem);
   font-weight: 650;
   line-height: 1;
 }
@@ -276,28 +280,17 @@ button {
   font-size: 1.02rem;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 1.4rem;
-  align-items: center;
-  margin-top: 2rem;
+.hero-email {
+  margin: 1.5rem 0 0;
+  overflow-wrap: anywhere;
+  color: var(--muted);
   font-size: 0.9rem;
-  font-weight: 650;
 }
 
-.hero-actions a {
-  text-decoration: none;
-}
-
-.hero-actions .primary-action {
-  padding: 0.64rem 1.1rem;
-  color: var(--paper);
-  background: var(--red);
-}
-
-.hero-actions .primary-action:hover {
-  color: var(--paper);
-  background: var(--red-dark);
+.hero-email span {
+  margin-right: 0.55rem;
+  color: var(--red-dark);
+  font-weight: 700;
 }
 
 .hero-portrait {
@@ -341,10 +334,9 @@ button {
 }
 
 .credential-row {
-  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0;
+  margin: 2rem 0 0;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--line);
 }
@@ -958,7 +950,7 @@ footer div {
 }
 
 @media (max-width: 1024px) {
-  .hero {
+  .hero-body {
     grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.7fr);
     gap: 2.5rem;
   }
@@ -1067,8 +1059,11 @@ footer div {
     gap: 0.8rem 1rem;
   }
 
-  .hero {
+  .hero-body {
     grid-template-columns: minmax(0, 1fr) 14rem;
+  }
+
+  .hero {
     min-height: auto;
     padding-top: 3.5rem;
   }
@@ -1171,26 +1166,27 @@ footer div {
     padding-top: 3rem;
   }
 
+  .hero-body,
   .hero-copy {
     display: contents;
   }
 
-  .hero-kicker {
+  .tsinghua-masthead {
     order: 1;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .hero-kicker {
+    order: 2;
     margin-bottom: 0.8rem;
+    margin-top: 1.5rem;
   }
 
   .hero h1 {
-    order: 2;
-    font-size: 3.8rem;
-  }
-
-  .tsinghua-identity {
     order: 3;
-    grid-template-columns: 3.2rem minmax(0, 1fr);
-    gap: 0.8rem;
-    margin-top: 1.4rem;
-    padding: 0.8rem 0;
+    font-size: 3.8rem;
   }
 
   .tsinghua-mark {
@@ -1215,15 +1211,16 @@ footer div {
   }
 
   .hero-summary {
-    order: 7;
+    order: 6;
   }
 
-  .hero-actions {
-    order: 8;
+  .hero-email {
+    order: 7;
+    max-width: 100%;
   }
 
   .hero-portrait {
-    order: 6;
+    order: 5;
     width: 100%;
     min-height: 0;
     margin-top: 0.5rem;
@@ -1236,7 +1233,7 @@ footer div {
   }
 
   .credential-row {
-    order: 5;
+    order: 8;
     margin-top: 0.5rem;
   }
 
