@@ -174,7 +174,8 @@ assert.doesNotMatch(englishHeroName[1], /<br\b/i, 'English hero name must not us
 assert.equal(englishHeroName[1].trim(), 'Jinshuai Zhang', 'English hero name must remain on one line');
 assert.doesNotMatch(soe, new RegExp(classTokenPattern('academic-identity'), 'i'), 'SOE page must not receive the default homepage identity lockup');
 assert.ok(existsSync(join(root, 'assets/images/tsinghua-seal.webp')), 'Tsinghua seal asset must exist');
-assert.match(files['assets/css/main.css'], /\.academic-identity\s*\{/i, 'Shared CSS must style the academic identity lockup');
+const mainCssWithoutComments = files['assets/css/main.css'].replace(/\/\*[\s\S]*?\*\//g, '');
+assert.match(mainCssWithoutComments, /\.academic-identity\s*\{/i, 'Shared CSS must style the academic identity lockup');
 
 for (const text of [
   'Jinshuai Zhang',
