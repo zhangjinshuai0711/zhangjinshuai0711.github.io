@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -121,6 +121,24 @@ for (const [label, html] of [
   assert.match(html, /<link\b[^>]*\bhreflang=["']en["'][^>]*>/i, `${label} must define hreflang=en`);
   assert.match(html, /<link\b[^>]*\bhreflang=["']zh-CN["'][^>]*>/i, `${label} must define hreflang=zh-CN`);
 }
+
+for (const [label, html, institution, degree, school] of [
+  ['English page', english, 'Tsinghua University', 'M.E. in Electronic Information (085400)', 'Institute for Network Sciences and Cyberspace · 2026-Present'],
+  ['Chinese page', chinese, '清华大学', '电子信息（085400）硕士研究生', '网络科学与网络空间研究院 · 2026年至今'],
+]) {
+  assert.match(html, /class=["'][^"']*academic-identity[^"']*["']/i, `${label} must contain the academic identity lockup`);
+  assert.match(html, /<img\b[^>]*class=["'][^"']*academic-seal[^"']*["'][^>]*src=["']\/assets\/images\/tsinghua-seal\.webp["']/i, `${label} must use the local Tsinghua seal`);
+  assert.ok(html.includes(institution), `${label} must show ${institution}`);
+  assert.ok(html.includes(degree), `${label} must show ${degree}`);
+  assert.ok(html.includes(school), `${label} must show ${school}`);
+}
+const englishHeroName = english.match(/<h1>([\s\S]*?)<\/h1>/i);
+assert.ok(englishHeroName, 'English page must contain a hero h1');
+assert.equal(englishHeroName[1].trim(), 'Jinshuai Zhang', 'English hero name must remain on one line');
+assert.doesNotMatch(englishHeroName[1], /<br\b/i, 'English hero name must not use a forced line break');
+assert.doesNotMatch(soe, /class=["'][^"']*academic-identity[^"']*["']/i, 'SOE page must not receive the default homepage identity lockup');
+assert.ok(existsSync(join(root, 'assets/images/tsinghua-seal.webp')), 'Tsinghua seal asset must exist');
+assert.match(files['assets/css/main.css'], /\.academic-identity\b/i, 'Shared CSS must style the academic identity lockup');
 
 for (const text of [
   'Jinshuai Zhang',
@@ -253,8 +271,8 @@ assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/zh/
 assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/soe/'), 'Sitemap must contain the SOE production URL');
 
 for (const [html, expected] of [
-  [english, 'M.E. Student in Electronic Information (085400)'],
-  [chinese, '电子信息（085400）'],
+  [english, 'M.E. in Electronic Information (085400)'],
+  [chinese, '电子信息（085400）硕士研究生'],
 ]) {
   assert.ok(html.includes(expected), `Existing homepage must contain ${expected}`);
 }
