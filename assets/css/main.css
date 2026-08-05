@@ -214,14 +214,34 @@ button {
 }
 
 .academic-identity {
+  position: relative;
   display: grid;
   grid-template-columns: 4rem minmax(0, 1fr);
   gap: 1rem;
   align-items: center;
   margin-top: 1.25rem;
   padding: 1rem 0;
-  border-top: 2px solid var(--blue);
-  border-bottom: 1px solid var(--line);
+}
+
+.academic-identity::before,
+.academic-identity::after {
+  position: absolute;
+  right: 1.5rem;
+  left: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.academic-identity::before {
+  top: 0;
+  height: 2px;
+  background: var(--blue);
+}
+
+.academic-identity::after {
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
 }
 
 .academic-seal {
@@ -885,6 +905,11 @@ footer p {
     gap: 0.7rem;
     margin-top: 1rem;
     padding: 0.75rem 0;
+  }
+
+  .academic-identity::before,
+  .academic-identity::after {
+    right: 0;
   }
 
   .academic-seal {
