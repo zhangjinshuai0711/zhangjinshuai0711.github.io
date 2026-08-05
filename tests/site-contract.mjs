@@ -7,8 +7,10 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const requiredFiles = [
   'index.html',
   'zh/index.html',
+  'soe/index.html',
   '404.html',
   'assets/css/main.css',
+  'assets/css/soe.css',
   'assets/js/main.js',
   'robots.txt',
   'sitemap.xml',
@@ -30,10 +32,52 @@ const files = Object.fromEntries(
 );
 const english = files['index.html'];
 const chinese = files['zh/index.html'];
-const publicText = `${english}\n${chinese}\n${files['404.html']}`;
+const soe = files['soe/index.html'];
+const publicText = `${english}\n${chinese}\n${soe}\n${files['404.html']}`;
 
 assert.match(english, /<html\b[^>]*\blang=["']en["']/i, 'English page must use lang=en');
 assert.match(chinese, /<html\b[^>]*\blang=["']zh-CN["']/i, 'Chinese page must use lang=zh-CN');
+assert.match(soe, /<html\b[^>]*\blang=["']zh-CN["']/i, 'SOE page must use lang=zh-CN');
+
+for (const id of ['overview', 'education', 'experience', 'projects', 'service', 'honors', 'contact']) {
+  assert.match(soe, new RegExp(`\\bid=["']${id}["']`, 'i'), `SOE page must contain #${id}`);
+}
+
+for (const text of [
+  '中共党员',
+  '电子信息硕士',
+  '网络空间安全方向',
+  '信息科技',
+  '算法',
+  '网络安全',
+  '2 / 75',
+  '94.09 / 100',
+  '字节跳动',
+  '中国科学院自动化研究所',
+  'ICES 企业与服务智能计算研究中心',
+  '大型内容推荐排序链路建设与优化',
+  'ToolScaler：基于结构感知语义标记的可扩展生成式工具调用',
+  'FGAD：反馈引导的异常扩散抑制图异常检测',
+  'ZDC 智盾链：基于图异常检测的智能反洗钱研究原型',
+  'SCWatch / 供链智防：供应链智能风控竞赛系统',
+  'BCWatch：区块链异常交易检测系统',
+  '面向微服务根因定位的图异常检测研究与工程原型',
+  '学生工作',
+  '社会实践与志愿服务',
+  '个人荣誉',
+  '竞赛奖项',
+  '奖学金',
+  '专业技能与证书',
+]) {
+  assert.ok(soe.includes(text), `SOE page must contain ${text}`);
+}
+
+assert.match(soe, /<link\b[^>]*\brel=["']canonical["'][^>]*href=["']https:\/\/zhangjinshuai0711\.github\.io\/soe\/["']/i, 'SOE page must define its canonical URL');
+assert.match(soe, /<meta\b[^>]*\bproperty=["']og:title["'][^>]*>/i, 'SOE page must define Open Graph metadata');
+assert.match(soe, /<details\b/i, 'SOE page must use native details for long indexes');
+assert.match(soe, /class=["'][^"']*front-honors[^"']*["']/i, 'SOE page must place selected honors near the top');
+assert.match(soe, /class=["'][^"']*front-competition[^"']*["']/i, 'SOE page must separate selected competition awards');
+assert.match(soe, /class=["'][^"']*front-personal[^"']*["']/i, 'SOE page must separate selected personal honors');
 
 for (const [label, html] of [
   ['English page', english],
@@ -131,7 +175,7 @@ for (const text of ['zhangjinshuai0711@163.com', 'github.com/zhangjinshuai0711']
   assert.ok(publicText.includes(text), `Public text must contain ${text}`);
 }
 
-for (const text of ['15227301392', 'Youny711', '中共党员']) {
+for (const text of ['15227301392', 'Youny711']) {
   assert.ok(!publicText.includes(text), `Public text must not contain ${text}`);
 }
 
@@ -189,5 +233,16 @@ assert.doesNotMatch(publicText, /href\s*=\s*["'][^"']*\.pdf(?:[?#][^"']*)?["']/i
 assert.match(files['assets/css/main.css'], /prefers-reduced-motion/i, 'CSS must respect prefers-reduced-motion');
 assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/'), 'Sitemap must contain the English production URL');
 assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/zh/'), 'Sitemap must contain the Chinese production URL');
+assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/soe/'), 'Sitemap must contain the SOE production URL');
+
+for (const [html, expected] of [
+  [english, 'M.E. Student in Electronic Information, Cyberspace Security Track'],
+  [chinese, '电子信息硕士 · 网络空间安全方向'],
+]) {
+  assert.ok(html.includes(expected), `Existing homepage must contain ${expected}`);
+}
+
+assert.doesNotMatch(soe, /href\s*=\s*["'][^"']*\.pdf(?:[?#][^"']*)?["']/i, 'SOE page must not link to PDF files');
+assert.match(files['assets/css/soe.css'], /prefers-reduced-motion/i, 'SOE CSS must respect prefers-reduced-motion');
 
 console.log('site contract: PASS');
