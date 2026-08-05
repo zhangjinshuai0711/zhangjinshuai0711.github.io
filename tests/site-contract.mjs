@@ -192,6 +192,16 @@ assert.doesNotMatch(soe, new RegExp(classTokenPattern('academic-identity'), 'i')
 assert.ok(existsSync(join(root, 'assets/images/tsinghua-seal.webp')), 'Tsinghua seal asset must exist');
 const mainCssWithoutComments = files['assets/css/main.css'].replace(/\/\*[\s\S]*?\*\//g, '');
 assert.match(mainCssWithoutComments, /\.academic-identity\s*\{/i, 'Shared CSS must style the academic identity lockup');
+assert.match(
+  mainCssWithoutComments,
+  /\.academic-identity::before\s*,\s*\.academic-identity::after\s*\{[\s\S]*?right:\s*1\.5rem;/i,
+  'Academic identity rules must stop 24px before the desktop divider',
+);
+assert.match(
+  mainCssWithoutComments,
+  /@media\s*\(max-width:\s*560px\)[\s\S]*?\.academic-identity::before\s*,\s*\.academic-identity::after\s*\{[\s\S]*?right:\s*0;/i,
+  'Academic identity rules must return to full width on mobile',
+);
 
 for (const text of [
   'Jinshuai Zhang',
