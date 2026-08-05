@@ -45,8 +45,13 @@ for (const id of ['overview', 'education', 'experience', 'projects', 'service', 
 
 for (const text of [
   '中共党员',
-  '电子信息硕士',
-  '网络空间安全方向',
+  '2025.06.18 转正',
+  '电子信息（085400）',
+  '网络科学与网络空间研究院',
+  '计算机科学与技术学院',
+  '自强不息，厚德载物',
+  '班级就业联络员',
+  '校友大使',
   '信息科技',
   '算法',
   '网络安全',
@@ -78,6 +83,18 @@ assert.match(soe, /<details\b/i, 'SOE page must use native details for long inde
 assert.match(soe, /class=["'][^"']*front-honors[^"']*["']/i, 'SOE page must place selected honors near the top');
 assert.match(soe, /class=["'][^"']*front-competition[^"']*["']/i, 'SOE page must separate selected competition awards');
 assert.match(soe, /class=["'][^"']*front-personal[^"']*["']/i, 'SOE page must separate selected personal honors');
+assert.match(soe, /class=["'][^"']*tsinghua-name[^"']*["'][^>]*>清华大学</i, 'SOE page must visually emphasize Tsinghua University');
+assert.match(soe, /class=["'][^"']*front-personal[^"']*["'][^>]*>[\s\S]*?优秀团员标兵[\s\S]*?<\/section>/i, 'Selected personal honors must feature Model Communist Youth League Member');
+assert.match(soe, /class=["'][^"']*honor-featured[^"']*["'][^>]*>[\s\S]*?优秀团员标兵[\s\S]*?<\/div>\s*<\/div>/i, 'Featured honors must include Model Communist Youth League Member');
+assert.match(files['assets/css/soe.css'], /\.tsinghua-name\b/i, 'SOE CSS must style the emphasized Tsinghua name');
+assert.doesNotMatch(soe, /规格严格，功夫到家|网络空间安全方向/, 'SOE page must use the current Tsinghua motto and degree name');
+assert.ok(!soe.includes('全国大学生信息安全竞赛作品赛 · 队长'), 'Selected information security award must not show the team-lead title');
+assert.ok(!soe.includes('全国大学生信息安全竞赛作品赛 · 全国三等奖（队长）'), 'Information security award index must not show the team-lead title');
+assert.ok(!soe.includes('全国大学生信息安全竞赛作品赛全国三等奖 · 队长'), 'Information security project metadata must not show the team-lead title');
+assert.match(soe, /班长<\/span><time>2024 至 2026<\/time>/, 'Student role index must use the full class-monitor term');
+assert.match(soe, /班级就业联络员<\/span><time>2025 至 2026<\/time>/, 'Student role index must include employment liaison');
+assert.match(soe, /校友大使<\/span><time>2026 至今<\/time>/, 'Student role index must include alumni ambassador');
+assert.ok(!soe.includes('班长</span><time>2024 至 2025</time>'), 'SOE page must not retain the old class-monitor term');
 
 for (const [label, html] of [
   ['English page', english],
@@ -236,11 +253,14 @@ assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/zh/
 assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/soe/'), 'Sitemap must contain the SOE production URL');
 
 for (const [html, expected] of [
-  [english, 'M.E. Student in Electronic Information, Cyberspace Security Track'],
-  [chinese, '电子信息硕士 · 网络空间安全方向'],
+  [english, 'M.E. Student in Electronic Information (085400)'],
+  [chinese, '电子信息（085400）'],
 ]) {
   assert.ok(html.includes(expected), `Existing homepage must contain ${expected}`);
 }
+
+assert.ok(english.includes('School of Computer Science and Technology'), 'English undergraduate education must name its school');
+assert.ok(chinese.includes('计算机科学与技术学院'), 'Chinese undergraduate education must name its school');
 
 assert.doesNotMatch(soe, /href\s*=\s*["'][^"']*\.pdf(?:[?#][^"']*)?["']/i, 'SOE page must not link to PDF files');
 assert.match(files['assets/css/soe.css'], /prefers-reduced-motion/i, 'SOE CSS must respect prefers-reduced-motion');
