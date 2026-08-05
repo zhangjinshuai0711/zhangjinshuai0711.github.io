@@ -14,6 +14,7 @@
   --line: #cfd6dc;
   --red: #a32332;
   --red-dark: #781824;
+  --thu: #6f247a;
   --blue-gray: #354b5f;
   --serif: "Songti SC", "STSong", "SimSun", serif;
   --sans: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -215,36 +216,49 @@ button {
   letter-spacing: 0;
 }
 
-.hero-school {
-  margin: 1.7rem 0 0;
-  font-family: var(--serif);
-  font-size: clamp(1.95rem, 3vw, 2.85rem);
-  line-height: 1.3;
+.tsinghua-identity {
+  display: grid;
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: center;
+  max-width: 43rem;
+  margin-top: 1.7rem;
+  padding: 1rem 0;
+  border-top: 2px solid var(--thu);
+  border-bottom: 1px solid var(--line);
 }
 
-.hero-school strong {
-  display: inline-block;
-  margin-top: 0.35rem;
-  color: var(--blue-gray);
-  font-family: var(--sans);
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  font-weight: 600;
+.tsinghua-mark {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tsinghua-details {
+  min-width: 0;
 }
 
 .tsinghua-name {
-  display: inline-block;
-  color: var(--red-dark);
-  font-size: clamp(2.7rem, 4.4vw, 4.1rem);
+  margin: 0;
+  color: var(--thu);
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 3.4vw, 3.3rem);
   font-weight: 650;
-  line-height: 1.08;
+  line-height: 1;
 }
 
-.hero-school small {
-  display: block;
-  margin-top: 0.45rem;
+.tsinghua-degree {
+  margin: 0.55rem 0 0;
+  color: var(--blue-gray);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.tsinghua-institute {
+  margin: 0.16rem 0 0;
   color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.83rem;
+  font-size: 0.78rem;
   font-weight: 500;
 }
 
@@ -1171,13 +1185,29 @@ footer div {
     font-size: 3.8rem;
   }
 
-  .hero-school {
+  .tsinghua-identity {
     order: 3;
-    font-size: 2rem;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0.8rem;
+    margin-top: 1.4rem;
+    padding: 0.8rem 0;
+  }
+
+  .tsinghua-mark {
+    width: 3.2rem;
+    height: 3.2rem;
   }
 
   .tsinghua-name {
-    font-size: 2.55rem;
+    font-size: 2.2rem;
+  }
+
+  .tsinghua-degree {
+    font-size: 0.82rem;
+  }
+
+  .tsinghua-institute {
+    font-size: 0.7rem;
   }
 
   .hero-role {

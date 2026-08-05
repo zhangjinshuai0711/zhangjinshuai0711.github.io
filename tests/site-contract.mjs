@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -84,9 +84,15 @@ assert.match(soe, /class=["'][^"']*front-honors[^"']*["']/i, 'SOE page must plac
 assert.match(soe, /class=["'][^"']*front-competition[^"']*["']/i, 'SOE page must separate selected competition awards');
 assert.match(soe, /class=["'][^"']*front-personal[^"']*["']/i, 'SOE page must separate selected personal honors');
 assert.match(soe, /class=["'][^"']*tsinghua-name[^"']*["'][^>]*>清华大学</i, 'SOE page must visually emphasize Tsinghua University');
+assert.match(soe, /class=["'][^"']*tsinghua-identity[^"']*["']/i, 'SOE hero must use a distinct Tsinghua identity band');
+assert.match(soe, /<img\b[^>]*class=["'][^"']*tsinghua-mark[^"']*["'][^>]*src=["']\/assets\/images\/tsinghua-seal\.jpg["'][^>]*width=["']600["'][^>]*height=["']598["']/i, 'SOE Tsinghua identity band must use the supplied seal dimensions');
 assert.match(soe, /class=["'][^"']*front-personal[^"']*["'][^>]*>[\s\S]*?优秀团员标兵[\s\S]*?<\/section>/i, 'Selected personal honors must feature Model Communist Youth League Member');
 assert.match(soe, /class=["'][^"']*honor-featured[^"']*["'][^>]*>[\s\S]*?优秀团员标兵[\s\S]*?<\/div>\s*<\/div>/i, 'Featured honors must include Model Communist Youth League Member');
 assert.match(files['assets/css/soe.css'], /\.tsinghua-name\b/i, 'SOE CSS must style the emphasized Tsinghua name');
+assert.match(files['assets/css/soe.css'], /\.tsinghua-identity\b/i, 'SOE CSS must style the Tsinghua identity band');
+const sealPath = join(root, 'assets/images/tsinghua-seal.jpg');
+assert.ok(existsSync(sealPath), 'SOE page must publish the supplied Tsinghua seal');
+assert.ok(statSync(sealPath).size < 100_000, 'Tsinghua seal must remain below 100 KB');
 assert.doesNotMatch(soe, /规格严格，功夫到家|网络空间安全方向/, 'SOE page must use the current Tsinghua motto and degree name');
 assert.ok(!soe.includes('全国大学生信息安全竞赛作品赛 · 队长'), 'Selected information security award must not show the team-lead title');
 assert.ok(!soe.includes('全国大学生信息安全竞赛作品赛 · 全国三等奖（队长）'), 'Information security award index must not show the team-lead title');
