@@ -35,6 +35,34 @@ const chinese = files['zh/index.html'];
 const soe = files['soe/index.html'];
 const publicText = `${english}\n${chinese}\n${soe}\n${files['404.html']}`;
 
+function classTokenPattern(className) {
+  return `\\bclass=["'][\\t\\r\\n\\f ]*(?:[^"'\\s]+[\\t\\r\\n\\f ]+)*${className}(?:[\\t\\r\\n\\f ]+[^"'\\s]+)*[\\t\\r\\n\\f ]*["']`;
+}
+
+function findElementByClass(html, className) {
+  const opening = new RegExp(
+    `<([a-z][\\w:-]*)\\b(?=[^>]*${classTokenPattern(className)})[^>]*>`,
+    'i',
+  ).exec(html);
+  if (!opening) return null;
+
+  const tagName = opening[1];
+  const tags = new RegExp(`<\\/?${tagName}\\b[^>]*>`, 'gi');
+  tags.lastIndex = opening.index + opening[0].length;
+  let depth = 1;
+
+  for (let tag = tags.exec(html); tag; tag = tags.exec(html)) {
+    if (tag[0].startsWith('</')) {
+      depth -= 1;
+      if (depth === 0) return html.slice(opening.index, tags.lastIndex);
+    } else if (!tag[0].endsWith('/>')) {
+      depth += 1;
+    }
+  }
+
+  return null;
+}
+
 assert.match(english, /<html\b[^>]*\blang=["']en["']/i, 'English page must use lang=en');
 assert.match(chinese, /<html\b[^>]*\blang=["']zh-CN["']/i, 'Chinese page must use lang=zh-CN');
 assert.match(soe, /<html\b[^>]*\blang=["']zh-CN["']/i, 'SOE page must use lang=zh-CN');
@@ -127,6 +155,33 @@ for (const [label, html] of [
   assert.match(html, /<link\b[^>]*\bhreflang=["']en["'][^>]*>/i, `${label} must define hreflang=en`);
   assert.match(html, /<link\b[^>]*\bhreflang=["']zh-CN["'][^>]*>/i, `${label} must define hreflang=zh-CN`);
 }
+
+for (const [label, html, institution, degree, school] of [
+  ['English page', english, 'Tsinghua University', 'M.E. in Electronic Information (085400)', 'Institute for Network Sciences and Cyberspace · 2026-Present'],
+  ['Chinese page', chinese, '清华大学', '电子信息（085400）硕士研究生', '网络科学与网络空间研究院 · 2026年至今'],
+]) {
+  const academicIdentity = findElementByClass(html, 'academic-identity');
+  assert.ok(academicIdentity, `${label} must contain the academic identity lockup`);
+  assert.match(
+    academicIdentity,
+    new RegExp(
+      `<img\\b(?=[^>]*${classTokenPattern('academic-seal')})(?=[^>]*\\bsrc=["']\\/assets\\/images\\/tsinghua-seal\\.webp["'])[^>]*>`,
+      'i',
+    ),
+    `${label} must use the local Tsinghua seal`,
+  );
+  assert.ok(academicIdentity.includes(institution), `${label} must show ${institution}`);
+  assert.ok(academicIdentity.includes(degree), `${label} must show ${degree}`);
+  assert.ok(academicIdentity.includes(school), `${label} must show ${school}`);
+}
+const englishHeroName = english.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
+assert.ok(englishHeroName, 'English page must contain a hero h1');
+assert.doesNotMatch(englishHeroName[1], /<br\b/i, 'English hero name must not use a forced line break');
+assert.equal(englishHeroName[1].trim(), 'Jinshuai Zhang', 'English hero name must remain on one line');
+assert.doesNotMatch(soe, new RegExp(classTokenPattern('academic-identity'), 'i'), 'SOE page must not receive the default homepage identity lockup');
+assert.ok(existsSync(join(root, 'assets/images/tsinghua-seal.webp')), 'Tsinghua seal asset must exist');
+const mainCssWithoutComments = files['assets/css/main.css'].replace(/\/\*[\s\S]*?\*\//g, '');
+assert.match(mainCssWithoutComments, /\.academic-identity\s*\{/i, 'Shared CSS must style the academic identity lockup');
 
 for (const text of [
   'Jinshuai Zhang',
@@ -259,8 +314,8 @@ assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/zh/
 assert.ok(files['sitemap.xml'].includes('https://zhangjinshuai0711.github.io/soe/'), 'Sitemap must contain the SOE production URL');
 
 for (const [html, expected] of [
-  [english, 'M.E. Student in Electronic Information (085400)'],
-  [chinese, '电子信息（085400）'],
+  [english, 'M.E. in Electronic Information (085400)'],
+  [chinese, '电子信息（085400）硕士研究生'],
 ]) {
   assert.ok(html.includes(expected), `Existing homepage must contain ${expected}`);
 }
