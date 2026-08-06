@@ -142,6 +142,21 @@ assert.match(soe, /班长<\/span><time>2024 至 2026<\/time>/, 'Student role ind
 assert.match(soe, /班级就业联络员<\/span><time>2025 至 2026<\/time>/, 'Student role index must include employment liaison');
 assert.match(soe, /校友大使<\/span><time>2026 至今<\/time>/, 'Student role index must include alumni ambassador');
 assert.ok(!soe.includes('班长</span><time>2024 至 2025</time>'), 'SOE page must not retain the old class-monitor term');
+assert.match(soe, /宿舍长<\/span><time>2022 至 2026<\/time>/, 'Student role index must use the full dorm leader term');
+assert.ok(!soe.includes('一站式朋辈导师'), 'SOE page must not include the one-stop peer mentor role');
+
+for (const text of [
+  '趣味编程进校园',
+  '筑心自习室',
+  '青声讲坛',
+  '迎新志愿服务',
+  '社会实践“十佳团队”',
+  '社会实践“十佳个人”',
+  '2024 暑期社会实践校级二等奖',
+  '2025 寒假社会实践校级三等奖',
+]) {
+  assert.ok(soe.includes(text), `SOE public service section must contain ${text}`);
+}
 
 for (const [label, html] of [
   ['English page', english],
