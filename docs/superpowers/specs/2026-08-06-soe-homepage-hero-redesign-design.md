@@ -13,19 +13,19 @@ Redesign the first screen of the Chinese state-owned-enterprise job homepage at 
 
 ## Information Hierarchy
 
-The desktop hero uses two vertical zones:
+The desktop hero uses an editorial split layout inspired by the Chinese algorithm homepage:
 
-1. A full-width Tsinghua identity masthead.
-2. A lower split layout with text on the left and the portrait on the right.
+1. A complete identity and narrative column on the left.
+2. A portrait column on the right.
 
-The masthead contains:
+The left-column identity block contains:
 
 - Tsinghua University seal.
 - 清华大学.
 - 电子信息（085400）.
 - 网络科学与网络空间研究院 · 2026 至今.
 
-The lower text area contains:
+The remaining left-column text contains:
 
 - 中共党员 · 信息科技 / 算法 / 网络安全.
 - Name: 张金帅.
@@ -49,7 +49,7 @@ The lower text area contains:
 
 ## Visual Treatment
 
-- Use a restrained Tsinghua purple masthead with a light neutral background, a purple top rule, and a subtle lower divider.
+- Use a restrained Tsinghua purple identity block with a light purple background, a purple top rule, and a subtle lower divider.
 - Keep the seal subordinate to the university name.
 - Set 清华大学 in the existing Chinese serif stack and supporting degree text in the existing sans-serif stack.
 - Keep the name prominent without increasing it beyond the current visual scale.
@@ -60,14 +60,14 @@ The lower text area contains:
 
 Desktop and tablet:
 
-- The Tsinghua masthead spans the full hero width.
-- The lower area uses a text-and-portrait split.
+- The full hero uses a text-and-portrait split.
+- The Tsinghua identity block stays inside the left text column instead of spanning the hero.
 - The portrait fills the right column without stretching or changing aspect ratio.
 - The first screen remains compact enough to reveal the start of the following content on typical desktop viewports.
 
 Mobile:
 
-- Collapse to one column in this order: Tsinghua masthead, party and role line, name, capability focus, portrait, summary, full email address.
+- Collapse to one column in this order: Tsinghua identity block, party and role line, name, capability focus, portrait, summary, full email address, credential row.
 - The masthead text may wrap naturally, but the seal must keep a fixed size.
 - The email address must fit without horizontal overflow.
 - No text may overlap or be clipped at 390 px width.
@@ -81,7 +81,7 @@ Mobile:
 
 ## Verification
 
-- Update the site contract to require the full-width identity masthead and the exact university, degree, institute, party, role, and email text.
+- Update the site contract to require the left-column identity block and the exact university, degree, institute, party, role, and email text.
 - Assert that /soe/ does not contain 2025.06.18 转正.
 - Assert that the hero does not contain a GitHub link or a mailto link.
 - Run the existing site contract and JavaScript syntax checks.

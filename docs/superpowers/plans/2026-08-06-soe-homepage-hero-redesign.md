@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (- [ ]) syntax for tracking.
 
-**Goal:** Redesign only the /soe/ first-screen Hero with a full-width Tsinghua masthead, a desktop text-and-portrait split, a mobile single-column flow, plain-text email, and no Hero GitHub link or party-conversion date.
+**Goal:** Redesign only the /soe/ first-screen Hero as the approved A option: a left-column Tsinghua identity and narrative block, a right-column portrait, a mobile single-column flow, plain-text email, and no Hero GitHub link or party-conversion date.
 
-**Architecture:** Keep the existing static HTML, CSS, and JavaScript structure. Build the Hero from three explicit layout units: a full-width tsinghua-masthead, a hero-body containing hero-copy and hero-portrait, and the existing credential-row; use CSS display: contents only at the mobile breakpoint to enforce the approved reading order without duplicating content.
+**Architecture:** Keep the existing static HTML, CSS, and JavaScript structure. Build the Hero as a hero-body split whose hero-copy contains the Tsinghua identity block and narrative, followed by the existing credential-row; use CSS display: contents only at the mobile breakpoint to enforce the approved reading order without duplicating content.
 
 **Tech Stack:** Semantic HTML5, native CSS, existing vanilla JavaScript, Node.js contract tests, Playwright visual verification, GitHub Pages.
 

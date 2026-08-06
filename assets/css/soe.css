@@ -173,35 +173,38 @@ button {
 
 .hero {
   width: min(100%, var(--content));
-  min-height: min(50rem, calc(100svh - 7.5rem));
+  min-height: min(47rem, calc(100svh - 6rem));
   margin: 0 auto;
   padding: clamp(2.5rem, 5vh, 4rem) var(--gutter) 2.2rem;
 }
 
-.tsinghua-masthead {
-  display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
-  gap: 1.2rem;
-  align-items: center;
-  width: 100%;
-  padding: 1.15rem 1.4rem;
-  border-top: 3px solid var(--thu);
-  border-bottom: 1px solid var(--line);
-  background: #f1eef3;
-}
-
 .hero-body {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
-  gap: clamp(2.5rem, 6vw, 6rem);
-  align-items: center;
-  min-height: 29rem;
-  margin-top: 2rem;
+  grid-template-columns: minmax(0, 1.38fr) minmax(19rem, 0.62fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: stretch;
+  min-height: 34rem;
 }
 
 .hero-copy {
-  align-self: center;
+  display: flex;
+  min-width: 0;
   max-width: 46rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tsinghua-identity {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: center;
+  width: min(100%, 42rem);
+  margin-bottom: 1.8rem;
+  padding: 1.15rem 1.35rem;
+  border-top: 3px solid var(--thu);
+  border-bottom: 1px solid #d8d2da;
+  background: #f1eef3;
 }
 
 .hero-kicker {
@@ -209,7 +212,7 @@ button {
   flex-wrap: wrap;
   gap: 0.7rem;
   align-items: center;
-  margin: 0 0 2rem;
+  margin: 0 0 1.4rem;
   color: var(--muted);
   font-size: 0.82rem;
   font-weight: 600;
@@ -226,7 +229,7 @@ button {
 .hero h1 {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(3.8rem, 6vw, 5.5rem);
+  font-size: clamp(3.7rem, 5.5vw, 5.1rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0;
@@ -247,7 +250,7 @@ button {
   margin: 0;
   color: var(--thu);
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 3.5vw, 3.4rem);
+  font-size: clamp(2.35rem, 3.3vw, 3.2rem);
   font-weight: 650;
   line-height: 1;
 }
@@ -267,7 +270,7 @@ button {
 }
 
 .hero-role {
-  margin: 1.7rem 0 0;
+  margin: 1.35rem 0 0;
   color: var(--red);
   font-size: 0.95rem;
   font-weight: 700;
@@ -275,13 +278,13 @@ button {
 
 .hero-summary {
   max-width: 41rem;
-  margin: 1rem 0 0;
+  margin: 0.9rem 0 0;
   color: var(--muted);
   font-size: 1.02rem;
 }
 
 .hero-email {
-  margin: 1.5rem 0 0;
+  margin: 1.25rem 0 0;
   overflow-wrap: anywhere;
   color: var(--muted);
   font-size: 0.9rem;
@@ -296,7 +299,7 @@ button {
 .hero-portrait {
   position: relative;
   align-self: stretch;
-  min-height: 31rem;
+  min-height: 34rem;
   margin: 0;
   overflow: hidden;
   background: var(--surface-strong);
@@ -314,7 +317,7 @@ button {
 .hero-portrait img {
   width: 100%;
   height: 100%;
-  min-height: 31rem;
+  min-height: 34rem;
   object-fit: cover;
   object-position: center 18%;
 }
@@ -955,6 +958,21 @@ footer div {
     gap: 2.5rem;
   }
 
+  .tsinghua-identity {
+    grid-template-columns: 3.8rem minmax(0, 1fr);
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .tsinghua-mark {
+    width: 3.7rem;
+    height: 3.7rem;
+  }
+
+  .tsinghua-name {
+    font-size: 2.35rem;
+  }
+
   .section-heading {
     grid-template-columns: 2.5rem minmax(0, 1fr);
   }
@@ -1060,7 +1078,8 @@ footer div {
   }
 
   .hero-body {
-    grid-template-columns: minmax(0, 1fr) 14rem;
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    gap: 2rem;
   }
 
   .hero {
@@ -1163,7 +1182,7 @@ footer div {
     min-height: auto;
     flex-direction: column;
     align-items: stretch;
-    padding-top: 3rem;
+    padding-top: 2.2rem;
   }
 
   .hero-body,
@@ -1171,10 +1190,12 @@ footer div {
     display: contents;
   }
 
-  .tsinghua-masthead {
+  .tsinghua-identity {
     order: 1;
     grid-template-columns: 3.2rem minmax(0, 1fr);
     gap: 0.8rem;
+    width: 100%;
+    margin-bottom: 0;
     padding: 0.9rem 1rem;
   }
 
